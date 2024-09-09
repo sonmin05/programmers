@@ -1,0 +1,569 @@
+# 1. 문자열 출력하기
+
+<aside>
+💡
+
+내 코드
+
+</aside>
+
+```arduino
+#include <stdio.h>
+#define LEN_INPUT 1000001
+
+int main(void) {
+    char s1[LEN_INPUT];
+    scanf("%s", &s1);
+
+    printf("%s", s1);
+    return 0;
+}
+```
+
+---
+
+# 2. a와 b 출력하기
+
+<aside>
+💡
+
+내 코드
+
+</aside>
+
+```arduino
+#include <stdio.h>
+
+int main(void) {
+    int a;
+    int b;
+    scanf("%d %d", &a, &b);
+    printf("a = %d\n", a);
+    printf("b = %d\n", b);
+    return 0;
+}
+```
+
+<aside>
+💡
+
+다른 사람의 코드
+
+</aside>
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    int a;
+    int b;
+    scanf("%d %d", &a, &b);
+    printf("a = %d\nb = %d", a, b);
+    return 0;
+}
+```
+
+<aside>
+💡
+
+차이점: 프린트 문을 한줄로 씀
+
+</aside>
+
+---
+
+# 3. 문자열 반복해서 출력하기
+
+<aside>
+💡
+
+내 코드
+
+</aside>
+
+```arduino
+#include <stdio.h>
+#define LEN_INPUT 11
+
+int main(void) {
+    char s1[LEN_INPUT];
+    int a;
+    int i;
+    scanf("%s %d", s1, &a);
+    for(i=1;i<=a;i++)
+    {
+        printf(s1);   
+    }
+    return 0;
+}
+```
+
+<aside>
+💡
+
+다른 사람의 코드
+
+</aside>
+
+```c
+#include <stdio.h>
+#define LEN_INPUT 11
+
+int main(void) {
+    char s1[LEN_INPUT];
+    int a;
+    scanf("%s %d", s1, &a);
+    while (a)
+    {
+        printf("%s", s1);
+        a--;
+    }
+    return 0;
+}
+```
+
+<aside>
+💡
+
+for문 대신 while문 사용
+
+while문 조건식 안에 0이 들어가면 while문이 종료되는 것을 이용하여 scanf로 a변수에 수를 지정하고 a를 감소하면서 while문 반
+
+</aside>
+
+---
+
+# 4. 대소문자 바꿔서 출력하기
+
+<aside>
+💡
+
+내 코드
+
+</aside>
+
+```arduino
+#include <stdio.h>
+#define LEN_INPUT 11
+
+int main(void) {
+    char s1[LEN_INPUT];
+    scanf("%s", s1);
+    int len = strlen(s1);
+
+    for(int i = 0; i < len; i++)
+    {
+        if(s1[i] >= 'A' && s1[i] <= 'Z') s1[i] += 32;
+        else if(s1[i] >= 'a' && s1[i] <= 'z') s1[i] -= 32;
+    }
+
+    printf("%s", s1);
+
+    return 0;
+}
+```
+
+<aside>
+💡
+
+다른 사람의 코드
+
+</aside>
+
+```c
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+#define LEN_INPUT 10
+
+int main(void) {
+    char s1[9]; // NULL 문자를 포함한 배열을 선언합니다.
+    scanf("%s", s1); // 최대 9개의 문자를 입력받습니다.
+
+    int len = strlen(s1);
+    for(int i = 0; i < len; i++) {
+        if(islower(s1[i]))
+        {
+            s1[i] = toupper(s1[i]);
+        }
+        else if(isupper(s1[i])) 
+        {
+            s1[i] = tolower(s1[i]);
+        }
+    }
+
+    printf("%s", s1);
+    return 0;
+}
+```
+
+<aside>
+💡
+
+<ctype.h> 헤더 파일을 사용하여 간편하게 대소문자 구분 및
+
+변환하는 코드
+
+islower(): 괄호안의 문자가 소문자인지 검사. 
+isupper(): 괄호안의 문자가 대문자인지 검사.
+
+toupper(): 함수를 사용하여 대문자로 변환.
+tolower(): 함수를 사용하여 소문자로 변환.
+
+</aside>
+
+---
+
+# 5. 특수문자 출력하기
+
+<aside>
+💡
+
+내 코드 
+
+</aside>
+
+```arduino
+#include <stdio.h>
+
+int main(void) {
+    printf("!@#$%^&*(\\\'\"<>?:;");
+    return 0;
+}
+```
+
+---
+
+# 6. 덧셈식 출력하기
+
+<aside>
+💡
+
+내 코드
+
+</aside>
+
+```arduino
+#include <stdio.h>
+
+int main(void) {
+    int a;
+    int b;
+    scanf("%d %d", &a, &b);
+    printf("%d + %d = %d", a, b, a + b);
+    return 0;
+}
+```
+
+<aside>
+💡
+
+다른 사람의 코드
+
+</aside>
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    int a;
+    int b;
+    int c;
+    scanf("%d %d", &a, &b);
+    c = a + b;
+    printf("%d + %d = %d \n",a,b,c);
+    return 0;
+}
+```
+
+<aside>
+💡
+
+a와 b를 더한 c변수를 따로 지정하여 출력 
+
+</aside>
+
+---
+
+# 7. 문자열 붙여서 출력하기
+
+<aside>
+💡
+
+내 코드
+
+</aside>
+
+```arduino
+#include <stdio.h>
+#define LEN_INPUT1 11
+#define LEN_INPUT2 11
+
+int main(void) {
+    char s1[LEN_INPUT1];
+    char s2[LEN_INPUT2];
+    scanf("%s %s", s1, s2);
+    printf("%s%s", s1, s2);
+
+    return 0;
+}
+```
+
+<aside>
+💡
+
+다른 사람의 코드 
+
+</aside>
+
+```c
+#include <stdio.h>
+#define LEN_INPUT1 11
+#define LEN_INPUT2 11
+
+int main(void) {
+    char s1[LEN_INPUT1];
+    char s2[LEN_INPUT2];
+    char s3[23];
+    int i,j;
+    scanf("%s %s", s1, s2);
+    for(i=0; s1[i]!='\0'; i++){
+        s3[i]=s1[i];
+    }
+    for(j=i; s2[j-i]!='\0'; j++){
+        s3[j]=s2[j-i];
+    }
+    s3[j]='\0';
+    puts(s3);
+    return 0;
+}
+```
+
+<aside>
+💡
+
+s3 배열을 정의한 후 s1과 s2에 저장된 문자열 배열을
+순서대로 s3배열에 넣어 출력 
+
+</aside>
+
+---
+
+# 8. 문자열 돌리기
+
+<aside>
+💡
+
+내 코드 
+
+</aside>
+
+```arduino
+#include <stdio.h>
+#define LEN_INPUT 11
+
+int main(void) {
+    char s1[LEN_INPUT];
+    scanf("%s", s1);
+    int i;
+    
+    for(i=0;i<=s1[i];i++)
+    {
+        printf("%c\n", s1[i]);
+    }
+
+    return 0;
+}
+
+```
+
+<aside>
+💡
+
+다른 사람의 코드
+
+</aside>
+
+```c
+#include <stdio.h>
+#define LEN_INPUT 11
+
+int main(void) {
+    char s1[LEN_INPUT];
+    scanf("%s", s1);
+
+    for(int i = 0; i < LEN_INPUT; i++)
+    {
+        if(s1[i] == '\0') break;
+        printf("%c\n", s1[i]);
+    }
+
+    return 0;
+}
+```
+
+<aside>
+💡
+
+for문 내부에 if문을 추가하여 배열의 끝이 비어있는 문자
+즉, \0일 때 for문이 종료되게 함 
+
+</aside>
+
+---
+
+# 9. 홀짝 구분하기
+
+<aside>
+💡
+
+내 코드
+
+</aside>
+
+```arduino
+#include <stdio.h>
+
+int main(void) {
+    int n;
+    scanf("%d", &n);
+    
+    if(n%2==0)
+    {
+        printf("%d is even", n);
+    }
+    else
+    {
+        printf("%d is odd", n);
+    }
+
+    return 0;
+}
+```
+
+<aside>
+💡
+
+다른 사람의 코드
+
+</aside>
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    int a;
+    scanf("%d", &a);
+    printf("%d", a);
+    if(a & 1) printf(" is odd");
+    else printf(" is even");
+    return 0;
+}
+```
+
+<aside>
+💡
+
+비트 연산 사용 코드(&)
+
+a&1 : a와 1의 비트를 계산하여 두 수의 비트가 모두 1일 때만 결과가 1이 된다.
+
+여기서 1을 이진수로 표현하면  0001이 되기 때문에
+a의 들어오는 값의 이진수의 맨 오른쪽 숫자에 따라
+짝수와 홀수가 결정된다. 
+
+</aside>
+
+---
+
+# 10. 문자열 겹쳐쓰기
+
+<aside>
+💡
+
+내 코드
+
+</aside>
+
+```arduino
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+char* solution(const char* my_string, const char* overwrite_string, int s) 
+{
+    char* answer = (char*)malloc(sizeof(char)*(strlen(my_string)+1));
+    
+    for(int i=0; i<strlen(my_string); i++) 
+    {
+        answer[i]=my_string[i];
+    }
+    for(int i=s; i<s+strlen(overwrite_string); i++) 
+    {
+        answer[i]=overwrite_string[i-s];
+        answer[strlen(my_string)]='\0';
+    }
+    return answer;
+}
+```
+
+<aside>
+💡
+
+다른 사람의 코드
+
+</aside>
+
+```c
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+// 파라미터로 주어지는 문자열은 const로 주어집니다. 변경하려면 문자열을 복사해서 사용하세요.
+char* solution(const char* my_string, const char* overwrite_string, int s) {
+    // return 값은 malloc 등 동적 할당을 사용해주세요. 할당 길이는 상황에 맞게 변경해주세요.
+    int a=strlen(my_string);
+    int b=strlen(overwrite_string);
+    char* answer = (char*)malloc(a+b);
+    int ptr=0;
+    int ptr1=0;
+
+    for(int i=0;i<a;i++)
+    {
+        answer[i]=my_string[i];
+    }
+    for(int i=0;i<s;i++)
+    {
+        answer[ptr++]=my_string[ptr1];
+        printf("%c",my_string[ptr1++]);        
+    }
+    ptr1=0;
+    for(int i=0;i<b;i++)
+    {
+        answer[ptr++]=overwrite_string[ptr1];
+        printf("%c",overwrite_string[ptr1++]);        
+    }
+    for(int i=ptr;i<a;i++)
+    {
+        answer[ptr]=my_string[ptr];
+        printf("%c",my_string[ptr++]);        
+    }
+    answer[ptr]=0;
+
+    //for(int i=0;i<b;i++)
+        //printf("\n\n%c",*answer++);
+
+    //printf("a = %d, b = %d",a,b);
+
+    return answer;
+}
+```
+
+<aside>
+💡
+
+배열의 길이를 지정하는 변수를 따로 지정하고
+조건식을 더 세분화하여 작성한 코드 
+
+</aside>
