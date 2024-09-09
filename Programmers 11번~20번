@@ -1,0 +1,203 @@
+### 11. 문자열 섞기
+
+```c
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
+
+// 파라미터로 주어지는 문자열은 const로 주어집니다. 변경하려면 문자열을 복사해서 사용하세요.
+char* solution(const char* str1, const char* str2) {
+    // return 값은 malloc 등 동적 할당을 사용해주세요. 할당 길이는 상황에 맞게 변경해주세요.
+    char* answer = (char*)malloc(sizeof(char)*strlen(str2)*2);
+    int len = strlen(str1);
+    int a =0;
+    int b =0;
+    for(int i=0; i <(len*2); i++){
+        if(i%2==0){
+            answer[i]=str1[a];
+            a++;
+        }
+        else{
+            answer[i]=str2[b];
+            b++;
+        }
+    }
+    answer[sizeof(char)*strlen(str2)*2]='\0';
+    return answer;
+}
+```
+
+### 12. 문자 리스트를 문자열로 변환하기
+
+```c
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
+
+char* solution(const char* arr[], size_t arr_len) {
+    char* answer = (char*)malloc(sizeof(char)*(arr_len+1));
+    for(int i=0; i<arr_len; i++)
+        answer[i] = arr[i][0];
+    answer[arr_len]='\0';
+    return answer;
+}
+```
+
+### 13. 문자열 곱하기
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+char* solution(char* my_string, int k) {
+    int len = strlen(my_string); // my_string의 길이
+    int new_len = len * k; // 반복된 문자열의 길이
+    char* result = (char*) malloc((new_len + 1) * sizeof(char)); // 결과 문자열 동적 할당
+
+    for (int i = 0; i < new_len; i++) {
+        result[i] = my_string[i % len]; // my_string을 k번 반복하여 result에 저장
+    }
+    result[new_len] = '\0'; // 문자열의 끝에 null 문자 추가
+
+    return result;
+}
+```
+
+### 14. 더 크게 합치기
+
+```c
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+int calc(int a, int b) {
+    int size = 1;
+    while(size <= b) size *= 10;
+    return a * size + b;
+}
+int solution(int a, int b) {
+    int ab = calc(a, b), ba = calc(b, a);
+    int answer = ab;
+    if(ba > ab) answer = ba;
+    return answer;
+}
+```
+
+### 15. 두 수의 연산값 비교하기
+
+```c
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+int solution(int a, int b) {
+    int answer = 0;
+    int x, y; // x = 2 * a * b // y = a(+)b
+    int c = a; // a값 저장할 변수
+    int d = b; // b값 저장할 변수
+    int res = 0; // 10 을 곱하는 횟수
+
+    while(d >= 1)  // b의 단위를 알아보기 위한 반복문    
+    {   
+        d = d / 10;
+        res += 1;
+    } // b의 단위보다 한 단위 높도록 a에 10을 곱하여 저장
+    for(int i = 0; i < res; i++)
+    {
+        c *= 10;
+    }
+    y = c + b; // 즉 a(+)b = a*(b의 단위*10) + b
+    x = 2 * a * b;
+
+    if( y > x )
+    {
+        answer = y;
+    }
+    else
+    {
+        answer = x;
+    }
+
+    return answer;
+}
+```
+
+### 16. n의 배수
+
+```c
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+int solution(int num, int n) {
+    int answer = 0;
+
+    if(num%n==0) {
+        answer= 1;
+    }
+
+    return answer;
+}
+```
+
+### 17. 공배수
+
+```c
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+int solution(int number, int n, int m) {
+    if(number % n) return 0;
+    if(number % m) return 0;
+    return 1;
+}
+```
+
+### 18. 홀짝에 따라 다른 값 반환하기
+
+```c
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+int solution(int n) {
+    int answer = 0;
+    if(n%2 == 1){
+        answer = (n/2+1)*(n/2+1);
+    }
+    else{
+        answer = (4*(n/2)*(n/2+1)*(n+1))/6;
+    }
+    return answer;
+}
+```
+
+### 19. 조건 문자열
+
+```c
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+// 파라미터로 주어지는 문자열은 const로 주어집니다. 변경하려면 문자열을 복사해서 사용하세요.
+int solution(const char* ineq, const char* eq, int n, int m) {
+    int answer = 0;
+
+    if(*ineq == '>')
+    {
+        if(*eq == '=') return n >= m;
+        else return n > m;
+    }
+    else
+    {
+        if(*eq == '=') return n <= m;
+        else return n < m;
+    }
+}
+```
+
+### 20. flag에 따라 다른 값 반환하기
